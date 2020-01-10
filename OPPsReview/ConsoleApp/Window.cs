@@ -130,7 +130,52 @@ namespace ConsoleApp
         //   the property as a Fully Implemented property
         public int? NumberOfPanes { get; set; }
 
+        //Constructors
+        //a constructors is "a method" that guarantees that the newly
+        //   created instance of this class will ALWAYS be created in
+        //   a known state
 
+        //constructors are optional
+        //IF a class DOES NOT have a constructor then the system
+        //   will generate the class instance using the datatype defaults
+        //   for your private data members and auto implemented properties
+        //this situation of no constructor(s) uses what is referred to as
+        //   a "System" constructor
+
+        //IF you code a constructor, you MUST code any and all constructors
+        //   needed by your class
+
+        //constructors CAN receive a list of parameters
+        //two common constructors for classes are the Default and Greedy constructor
+
+        //Default constructor
+        //this version of the constructor takes NO parameters
+        //this version of the constructor usually similates the System constructor
+        //you CAN if you wish assign values to your class data members/properties
+        //    that are NOT the system default for that datatype
+        // NO RETURN DATATYPE!!!!
+        //This "method" is call on your behave when an instance of the class
+        //   is requested by the outside user
+        //You CAN NOT call this "method" directly
+        public Window()
+        {
+            //default constructor
+            //optionally specify your own default values
+            NumberOfPanes = 1;
+            _Height = -36.0m; //inches 
+            //Height = 36.0m;  //preferred method of touching any data in the class 
+        }
+
+        //Greedy Constructor
+        //takes in a value for each data member/property in the class
+        //each data member/property is assigned the incoming parameter value
+        public Window(decimal width, decimal height, int? numberofpanes, string manufacturer)
+        {
+            Width = width;
+            Height = height;
+            Manufacturer = manufacturer;
+            NumberOfPanes = numberofpanes;
+        }
 
     }
 }
