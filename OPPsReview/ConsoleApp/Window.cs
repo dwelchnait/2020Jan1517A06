@@ -25,6 +25,7 @@ namespace ConsoleApp
 
         //Private data member
         private string _Manufacturer;
+        private decimal _Height;
 
         //Properties
         //properties can be implemented in two ways
@@ -34,6 +35,8 @@ namespace ConsoleApp
         //b) Auto Implemented property
         //    used when there is no need for additonal code/logic,
         //    when the data is simply saved
+
+        // example of a Fully implemented property
         public string Manufacturer
         {
             //assume the Manufacturer is a nullable string
@@ -55,9 +58,79 @@ namespace ConsoleApp
             {
                 //the set take incoming data and places that data
                 //   into the private data member
+                //internal to the property, incoming data will be placed
+                //   in a common variable called value
+                //a property is associated with a single data member.
+                //a property has no parameter list
+                if (string.IsNullOrEmpty(value))
+                {
+                    _Manufacturer = null;
+                }
+                else
+                {
+                    _Manufacturer = value;
+                }
 
+                //alternate code
+                //_Manufacturer = string.IsNullOrEmpty(value) ? null : value;
             }
         }
+
+        //example of an Auto Implemented property
+        // auto implemented properties can be used when there is NO NEED
+        //     for additional processing against the incoming data
+        // NO internal private data member is required for this property
+        // the system will internally generate a data area for the data
+        // access this the stored data (getting or setting) CAN ONLY be done
+        //     via the property
+        public decimal Width { get; set; }
+
+        //one can still code an auto implement property as a
+        //   fully implemented property
+        //private decimal _Width;
+        //public decimal Width
+        //{
+        //    get
+        //    {
+        //        return _Width;
+        //    }
+        //    set
+        //    {
+        //        _Width = value;
+        //    }
+        //}
+
+
+        //lets fully implement Height with a criteria of being > 0
+        public decimal Height
+        {
+            get
+            {
+                return _Height;
+            }
+            set
+            {
+                // the m indicates the value is a decimal
+                if (value <= 0.0m)
+                {
+                    throw new Exception("Height can not be 0 or less than 0.");
+                }
+                else
+                {
+                    _Height = value;
+                }
+            }
+        }
+
+        //Why do we NOT need to fully implement a nullable numeric?
+        //Numerics have a default of zero.
+        //Numerics can only store a numeric (unless nullable)
+        //Numerics can be null if declared as nullable
+        //IF the numeric has additional criteria THEN you can code
+        //   the property as a Fully Implemented property
+        public int? NumberOfPanes { get; set; }
+
+
 
     }
 }
