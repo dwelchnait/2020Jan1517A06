@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp
+namespace ConsoleData
 {
     public class Door
     {
@@ -99,6 +99,16 @@ namespace ConsoleApp
             Height = height;
             RightOrLeft = rightofleft;
             Material = material;
+        }
+
+        public decimal DoorArea()
+        {
+            return Width * Height;
+        }
+
+        public decimal DoorPerimeter()
+        {
+            return 2 * (Width + Height);
         }
     }
 }

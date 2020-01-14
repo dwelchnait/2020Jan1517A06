@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp
+namespace ConsoleData
 {
     //a class represents the defined characteristics of a item
     //an item can be a physical thing (cellphone), concept (student),
@@ -28,6 +28,7 @@ namespace ConsoleApp
         private decimal _Height;
 
         //Properties
+        //optional
         //properties can be implemented in two ways
         //a) Fully Implemented property
         //    used because there is additional code/logic use
@@ -162,8 +163,7 @@ namespace ConsoleApp
             //default constructor
             //optionally specify your own default values
             NumberOfPanes = 1;
-            _Height = -36.0m; //inches 
-            //Height = 36.0m;  //preferred method of touching any data in the class 
+            Height = 0.9m;  //preferred method of touching any data in the class 
         }
 
         //Greedy Constructor
@@ -177,5 +177,18 @@ namespace ConsoleApp
             NumberOfPanes = numberofpanes;
         }
 
+        //Behavours (method)
+        //optional
+
+        //Area of a Window
+        public decimal WindowArea()
+        {
+            return Width * Height;
+        }
+        //Perimeter of a Window
+        public decimal WindowPerimeter()
+        {
+            return 2 * (Width + Height);
+        }
     }
 }
