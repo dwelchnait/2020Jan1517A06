@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Hello World";
+    //this line of code will retreive the contents of a named input control
+    //data is within the Request structure
+    //data enters your code as a string
+    //this is C# coding so all C# rules apply
+    string inputData = Request.Form["codingname"];
+}
+
+<h1>Hello World</h1>
+
+@if (IsPost)
+{
+    //for logical processing which probably depends on the button you press
+    //  it is BEST to determine which button was press THEN do your remaining
+    //  logic
+    var theButton = Request.Form["PressMe"];
+    if (theButton.Equals("left"))
+    {
+
+        //in the true path of the IsPost test
+        //  your page is returning from the browser
+        //  with any data that you have entered into
+        //  your form controls
+        <p>
+            This is the nth time the page has appeared. You entered the string
+            &gt; @inputData  &lt;
+        </p>
+    }
+    else
+    {
+        var account = Request.Form["rightSide"];
+        <p>
+            This is the nth time the page has appeared. You entered the string
+            &gt; @account  &lt;
+        </p>
+    }
+}
+else
+{
+    //in the false path of the IsPost test
+    //  your page has not yet be sent to the browser
+    //this is an excellent place to do page initialization work
+    <p>This is the first time the page appears</p>
+}
+
+
+<form id="theForm" method="post">
+    <table>
+        <tr>
+            <td>
+                <label for="codingname">Enter your name:</label>
+                &nbsp;&nbsp;
+                <input type="text" id="javascriptname" name="codingname" />
+                &nbsp;&nbsp;
+                @* a button using the input tag
+                    <input type="submit" id="PressMe" name="PressMe" value="DisplayText" />*@
+                @* a button using the button tag *@
+                <button type="submit" id="PressMe" name="PressMe" value="left">Press Me</button>
+            </td>
+            <td>
+                <label for="rightSide">Enter your git account:</label>
+                &nbsp;&nbsp;
+                <input type="text" id="rightSide" name="rightSide" />
+                &nbsp;&nbsp;
+                <button type="submit" id="PressMe" name="PressMe" value="right">Press Me</button>
+            </td>
+        </tr>
+    </table>
+
+</form>
