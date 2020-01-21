@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "RadioButtons";
+
+}
+
+@section banner{
+    <h1>Using RadioButton List</h1>
+}
+@* YOU MUST REMEMBER Razor page execute from TOP TO BOTTOM *@
+@if (IsPost)
+{
+    var language = Request.Form["LanguageGroup"];
+    var script = Request.Form["ScriptGroup"];
+    if (language.IsEmpty() || script.IsEmpty())
+    {
+        <p><span style="color:firebrick">Make a selection from both programs and coding.</span></p>
+    }
+    else
+    {
+        if (language.Equals("C#", StringComparison.OrdinalIgnoreCase))
+        {
+            <p>You will greatly enjoy the CPSC1517 course as we use C#.</p>
+        }
+        else
+        {
+            <p>Too bad. Unfortunately the CPSC1517 course does not use @language</p>
+        }
+
+        if (script.Equals("Razor", StringComparison.OrdinalIgnoreCase))
+        {
+            <p>You will greatly enjoy the CPSC1517 course as we use Razor form.</p>
+        }
+        else
+        {
+            <p>Too bad. Unfortunately the CPSC1517 course does not use @script</p>
+        }
+    }
+}
+else
+{
+
+}
+<form id="theForm" method="post">
+    <div class="row">
+        <div class="offset-1">
+            <label for="LanguageGroup">Select your favorite programming language</label><br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="C#" />C#<br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="VB" />VisualBasic<br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="Cobol" />Cobol<br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="Fortran" />Fortran<br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="Pascal" />Pascal<br />
+            <br />
+            <label for="ScriptGroup">Select your favorite sripting code</label><br />
+            <input type="radio" name="ScriptGroup" id="ScriptGroup" value="JS" />Javascript<br />
+            <input type="radio" name="ScriptGroup" id="ScriptGroup" value="Razor" />Razor<br />
+            <input type="radio" name="ScriptGroup" id="ScriptGroup" value="PHP" />PHP<br />
+            <br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-1">
+            <button type="submit" name="theButton" id="theButton" value="submit">Submit</button>
+        </div>
+    </div>
+</form>
