@@ -22,6 +22,7 @@
          RenderSection is required (default) on each content page unless the
          required parameter has been set to false*@
         <div class="jumbotron">
+            @RenderPage("~/_Menu.cshtml")
             @RenderSection("banner")
         </div>
         @* RenderBody is the main default area where your context
