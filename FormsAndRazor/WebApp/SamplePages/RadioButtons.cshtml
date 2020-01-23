@@ -1,7 +1,14 @@
 ﻿@{
     Layout = "~/_Layout.cshtml";
     Page.Title = "RadioButtons";
+    //if you wish your variable to be known throughout the entire
+    //   file, the varibale MUST be declared at the beginning of
+    //   your file code
 
+    //if your form control does NOT exist then the result of
+    // the Request.Form["xxxxx"] will be null
+    var language = Request.Form["LanguageGroup"];
+    var script = Request.Form["ScriptGroup"];
 }
 
 @section banner{
@@ -10,8 +17,7 @@
 @* YOU MUST REMEMBER Razor page execute from TOP TO BOTTOM *@
 @if (IsPost)
 {
-    var language = Request.Form["LanguageGroup"];
-    var script = Request.Form["ScriptGroup"];
+
     if (language.IsEmpty() || script.IsEmpty())
     {
         <p><span style="color:firebrick">Make a selection from both programs and coding.</span></p>
@@ -39,22 +45,32 @@
 }
 else
 {
-
+    //the else side of your IsPost is an EXCELLENT place to
+    //    assign initial default values for your global control variables
+    language = "";
+    script = "";
 }
 <form id="theForm" method="post">
     <div class="row">
         <div class="offset-1">
             <label for="LanguageGroup">Select your favorite programming language</label><br />
-            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="C#" />C#<br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="C#" 
+                    checked="@(language.Equals("C#")?true:false)"/>C#<br />
             <input type="radio" name="LanguageGroup" id="LanguageGroup" value="VB" />VisualBasic<br />
-            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="Cobol" />Cobol<br />
-            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="Fortran" />Fortran<br />
-            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="Pascal" />Pascal<br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="Cobol" 
+                   checked="@(language.Equals("Cobol")?true:false)"/>Cobol<br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="Fortran" 
+                   checked="@(language.Equals("Fortran")?true:false)"/>Fortran<br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="Pascal" 
+                   checked="@(language.Equals("Pascal")?true:false)"/>Pascal<br />
             <br />
             <label for="ScriptGroup">Select your favorite sripting code</label><br />
-            <input type="radio" name="ScriptGroup" id="ScriptGroup" value="JS" />Javascript<br />
-            <input type="radio" name="ScriptGroup" id="ScriptGroup" value="Razor" />Razor<br />
-            <input type="radio" name="ScriptGroup" id="ScriptGroup" value="PHP" />PHP<br />
+            <input type="radio" name="ScriptGroup" id="ScriptGroup" value="JS" 
+                   checked="@(script.Equals("JS")?true:false)"/>Javascript<br />
+            <input type="radio" name="ScriptGroup" id="ScriptGroup" value="Razor" 
+                   checked="@(script.Equals("Razor")?true:false)"/>Razor<br />
+            <input type="radio" name="ScriptGroup" id="ScriptGroup" value="PHP"
+                   checked="@(script.Equals("PHP")?true:false)"/>PHP<br />
             <br />
         </div>
     </div>

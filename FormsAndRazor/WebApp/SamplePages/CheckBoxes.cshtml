@@ -1,0 +1,62 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "CheckBoxes";
+    var choices = Request.Form["CheckBoxGroup"];
+}
+
+@section banner{
+    <h1>Using Checkboxes</h1>
+}
+
+@if (IsPost)
+{
+    if (choices.IsEmpty())
+    {
+        <p><span style="color:firebrick">So you do not like to play games?</span></p>
+    }
+    else
+    {
+        //choices will be a string of values separated by a comma
+        //I will need to split this string up at the commas
+        //to do so, we will use the single method .Split(delimiter)
+        //the delimiter is the character that separates your values
+        <p>
+            I see you like to use the following gaming platforms:
+            <ul>
+                @foreach(var item in choices.Split(','))
+                {
+                    <li>@item</li>
+                }
+            </ul>
+        </p>
+    }
+}
+else
+{
+    choices = "";
+}
+<form id="theForm" method="post">
+    <div class="offset-1">
+        <label for="CheckBoxGroup">Select your favorite gaming platform(s):</label><br />
+        <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup"
+               value="PS4" 
+               @(Array.IndexOf(choices.Split(','),"PS4") >= 0 ? "checked" : "" )/>PS4<br />
+        <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup"
+               value="PC" 
+               @(Array.IndexOf(choices.Split(','),"PC") >= 0 ? "checked" : "" )/>Computer<br />
+        <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup"
+               value="XBox One" 
+               @(Array.IndexOf(choices.Split(','),"XBox One") >= 0 ? "checked" : "" )/>XBox One<br />
+        <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup"
+               value="Nintendo Switch" 
+               @(Array.IndexOf(choices.Split(','),"Nintendo Switch") >= 0 ? "checked" : "" )/>Switch<br />
+        <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup"
+               value="Phone" 
+               @(Array.IndexOf(choices.Split(','),"Phone") >= 0 ? "checked" : "" )/>Cell Phone<br />
+        <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup"
+               value="Wii" 
+               @(Array.IndexOf(choices.Split(','),"Wii") >= 0 ? "checked" : "" )/>Wii<br />
+        <button type="submit" name="theButton" id="theButton" value="submit"
+                class="btn btn-primary">Submit</button>
+    </div>
+</form>

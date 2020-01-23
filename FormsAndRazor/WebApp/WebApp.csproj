@@ -122,6 +122,8 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="SamplePages\RadioButtons.cshtml" />
+    <Content Include="SamplePages\CheckBoxes.cshtml" />
+    <Content Include="SamplePages\DropDownList.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

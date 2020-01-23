@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "DropDownList (Select)";
+    var choice = Request.Form["CodingSamples"];
+}
+
+@section banner{
+    <h1>Using Select control for a DropDownList</h1>
+}
+
+@if (IsPost)
+{
+    switch(choice.ToUpper())
+    {
+        case "TEXTBOXES":
+            {
+                //to go to another page without using an anchor tag
+                //use Response.Redirect("xxxxx.cshtml")
+                Response.Redirect("~/HelloWorld.cshtml");
+                break;
+            }
+        case "RADIOBUTTONS":
+            {
+                //to go to another page without using an anchor tag
+                //use Response.Redirect("xxxxx.cshtml")
+                Response.Redirect("RadioButtons.cshtml");
+                break;
+            }
+        case "CHECKBOXES":
+            {
+                //to go to another page without using an anchor tag
+                //use Response.Redirect("xxxxx.cshtml")
+                Response.Redirect("CheckBoxes.cshtml");
+                break;
+            }
+        default:
+            {
+                <p><span style="color:firebrick">Make a select from the list of choices.</span></p>
+                break;
+            }
+    }
+}
+else
+{
+    //by default the select control positions itself on the first selection
+}
+<form id="theForm" method="post">
+    <div class="offset-1">
+        <label for="CodingSamples">Select the sample to view</label><br />
+            @* a single select is created using the option tag
+            the tag has a parameter call value
+            the display text is coded between the opening and closing tag*@
+        <select id="CodingSamples" name="CodingSamples">
+            <option value="">select ...</option>
+            <option value="TextBoxes">TextBoxes</option>
+            <option value="RadioButtons">RadioButtons</option>
+            <option value="CheckBoxes">CheckBoxes</option>
+        </select><br /><br />
+        <button type="submit" name="theButton" id="theButton" value="submit"
+                class="btn btn-primary">
+            Submit
+        </button>
+    </div>
+</form>
