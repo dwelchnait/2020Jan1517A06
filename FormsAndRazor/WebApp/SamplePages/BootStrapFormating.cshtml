@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "BootStrap Formating";
+
+}
+
+@section banner{
+    <h1>Exploring BootStrap to Format page</h1>
+}
+
+<blockquote class="alert alert-info">
+    Bootstrap is a css style sheet created as open source. It contains about 10,000 lines of css code.
+    Using various aspects of this style sheet can allow us to quick via classes block format
+    our web page. It will also allow for text alignment, setting up nicely formated grid displays,
+    create color buttons, banners, etc.  
+    Alert allows for color blocking an area plus other stuff. 4 basic alert colors can be obtained
+    by using alert-succes, alert-info, alert-warning and alert-danger.
+    Default blocak alignment is left. You can change that using text-xxxxx where xxxx is left,right and center.
+    <br/><br />
+    WARNING: Bootstrap is open-source third party and is subject to change. Thus items that were once available
+    may NOT be available in the future.
+</blockquote>
+
+<div class="row">
+    <div class="col-md-4">
+        left block
+    </div>
+    <div class="col-md-3 text-center">
+        center block
+    </div>
+    <div class="col-md-5 text-right">
+        right bock
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div class="alert alert-success">
+            left text content
+        </div>
+    </div>
+    <div class="col-md-3  text-capitalize text-center text-dark" >
+        <div >
+            center text content
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="alert alert-danger">
+            right text content
+        </div>
+    </div>
+</div>
+<div class="row">
+    <button type="submit" name="theButton" id="theButton" value="submit"
+            class="btn btn-primary">
+        Submit
+    </button>&nbsp;&nbsp;
+    <button type="submit" name="theButton" id="theButton" value="submit"
+            class="btn btn-light">
+        Submit
+    </button>&nbsp;&nbsp;
+    <button type="submit" name="theButton" id="theButton" value="submit"
+            class="btn btn-dark">
+        Submit
+    </button>&nbsp;&nbsp;
+    <button type="submit" name="theButton" id="theButton" value="submit"
+            class="btn btn-outline-secondary">
+        Submit
+    </button>&nbsp;&nbsp;
+</div>
+
+
+
+
