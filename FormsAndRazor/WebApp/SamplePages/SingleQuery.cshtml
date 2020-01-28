@@ -1,0 +1,100 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Single Query Record";
+    var regionidarg = Request.Form["RegionIDArg"];
+    var regionid = "";
+    var regiondescription = "";
+
+    if (string.IsNullOrEmpty(regionidarg))
+    {
+        //the first time the page comes up, may query argument 
+        //will be null: it needs a value so the database query
+        //will NOT abort
+        regionidarg = "0";
+    }
+
+    //connect to your database
+    //use the connection string name in our connection
+    var db = Database.Open("NWDB");
+
+    //create the database sql query command
+    //placeholders will be used for input data values
+    //placeholders start at 0 and increment by 1
+    //placeholders must linearly be used in your command
+    //placeholders syntax @0 @1 @2 ...
+    var querycommand = @"SELECT RegionID, RegionDescription
+                         FROM Region 
+                         Where RegionID = @0";
+
+    //execute the querycommand
+    //there are 3 ways to execute a query depending on the expected
+    //   number of returned records/value
+    // a) a single record returned use QuerySingle()
+    // b) multiple records (0, 1 or more) use Query()
+    // c) a single value use QueryValue()
+    var results = db.QuerySingle(querycommand, regionidarg);
+}
+
+@section banner{
+    <h1>Using Database: Query a Single Record</h1>
+}
+
+@if(IsPost)
+{
+    var thebutton = Request.Form["theButton"];
+    if (thebutton.Equals("submit"))
+    {
+        //ALWAYS test for results
+        //For a single record test use == null
+        if (results == null)
+        {
+            //nothing was found on the database
+            regionid = "";
+            regiondescription = "";
+            <p>No record found for region id @regionidarg</p>
+        }
+        else
+        {
+            <p>Found</p>
+            //There are two ways to retreive a value from a queried record
+            //a) access using an index
+            //b) access using the column title string
+            regionid = results[0].ToString();
+            regiondescription = results.RegionDescription;
+        }
+    }
+    else
+    {
+        //clear
+        regionidarg = "";
+        regionid = "";
+        regiondescription = "";
+    }
+}
+else
+{
+    regionidarg = "";
+}
+<form id="theForm" method="post">
+    <div class="row">
+        <div class="col-md-3">
+            <label for="RegionIDArg">Enter a Region ID:</label>&nbsp;&nbsp;
+            <input type="text" name="RegionIDArg" id="RegionIDArg"
+                   value="@regionidarg" placeholder="enter region id" />
+            <br /><br />
+            <button type="submit" name="theButton" id="theButton" value="submit">Submit</button>&nbsp;&nbsp;
+            <button type="submit" name="theButton" id="theButton" value="clear">Clear</button>
+        </div>
+        <div class="col-md-8">
+            <label for="RegionID">Region ID:</label>&nbsp;&nbsp;
+            <input type="text" name="RegionID" id="RegionID"
+                   value="@regionid" />
+            <br />
+            <label for="RegionDescription">Description:</label>&nbsp;&nbsp;
+            <input type="text" name="RegionDescription" id="RegionDescription"
+                   value="@regiondescription" />
+        </div>
+    </div>
+</form>
+
+
