@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Multi record Query";
+
+    var db = Database.Open("NWDB");
+    var querycommand = @"SELECT CategoryID, CategoryName
+                         FROM Categories
+                         ORDER BY CategoryName";
+    var ddlResults = db.Query(querycommand);
+
+    var categorylist = Request.Form["CategoryList"];
+    //a reminder, the first time through your page
+    //   no controls yet exist THERFORE their
+    //   Request.Form[] value will be null
+    //   You must code for this fact
+    if (categorylist == null)
+    {
+        categorylist = "0";
+    }
+
+}
+
+@section banner{
+    <h1>Using Database: Query a Collection of Records</h1>
+}
+
+@if (IsPost)
+{
+    //validation: did the user make a selection
+    if (categorylist.Equals("0"))
+    {
+        <p><span style="color:firebrick">Make a selection from the category list.</span></p>
+    }
+    else
+    {
+        //determine if there is anything to display
+        //execute a query against the Product table to see
+        //   if the selected category has any products
+        var querysearch = @"SELECT ProductName
+                            FROM Products
+                            WHERE CategoryID = @0";
+        var results = db.Query(querysearch, categorylist);
+
+        //to test if any records were return from the sql query
+        //   into the variable results; check the results for a
+        //   a record Count()
+        // test syntax is   results.Count()
+        if (results.Count() == 0)
+        {
+            <p><span style="color:firebrick">there are no products for the selected category.</span></p>
+        }
+        else
+        {
+            @*<p><span style="color:firebrick">There are @results.Count() products for the selected category.</span></p>*@
+
+            //how to pass data between pages
+            //to call another page, use Response.Redirect(" the desired page name ")
+            //to pass parameters to the page you will add the data AFTER the page reference
+            //syntax Response.Redirect("xxxxxxpage.cshtml?label=value[&label=value....]")
+            //this uses the Get method of handling data WHICH MEANS visible and plain text
+            Response.Redirect("WebGridDemo.cshtml?cid=" + categorylist);
+        }
+    }
+}
+<form id="theForm" method="post">
+    <div class="row">
+        <div class="offset-3">
+            <label for="CategoryList">Select a Category:</label>&nbsp;&nbsp;
+            <select name="CategoryList" id="CategoryList">
+                @* the first option tag represents what is called a prompt line *@
+                <option value="0">select ...</option>
+
+                @* loop through the collection of records in ddlResults
+                    create a line the ddl for each item in the collection
+                    referencing an item column of the collection is done
+                       using either the index or propertyname technique
+                    here the propertyname is the sql column title string*@
+                @foreach (var item in ddlResults)
+                {
+                    if (item.CategoryID.ToString() == categorylist)
+                    {
+                        <option value="@item.CategoryID" selected>@item[1]</option>
+                    }
+                    else
+                    {
+                        <option value="@item.CategoryID">@item[1]</option>
+                    }
+
+                }
+            </select>&nbsp;&nbsp;
+            <button type="submit" name="theButton" id="theButton" value="submit"
+                    class="btn btn-primary">
+                Search
+            </button>
+        </div>
+    </div>
+</form>
