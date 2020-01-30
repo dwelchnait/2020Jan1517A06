@@ -14,30 +14,37 @@
                 <a class="nav-link" href="~/Default.cshtml"
                    style="color:black">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="~/HelloWorld.cshtml"
-                   style="color:black">Hello World</a>
+
+            @* demonstration of setting up a dropdown menu *@
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" style="color:black"
+                   id="navbarSubMenu" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Controls</a>
+                <div class="dropdown-menu" aria-labelledby="navbarSubMenu">
+                    <a class="dropdown-item" href="~/HelloWorld.cshtml"
+                       style="color:black">Hello World</a>
+                    <a class="dropdown-item" href="~/SamplePages/RadioButtons.cshtml"
+                       style="color:black">RadioButtons</a>
+                    <a class="dropdown-item" href="~/SamplePages/CheckBoxes.cshtml"
+                       style="color:black">CheckBoxes</a>
+                    <a class="dropdown-item" href="~/SamplePages/DropDownList.cshtml"
+                       style="color:black">DropDownList (Select)</a>
+                    <a class="dropdown-item" href="~/SamplePages/BootStrapFormating.cshtml"
+                       style="color:black">BootStrap Formating</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="~/SamplePages/RadioButtons.cshtml"
-                   style="color:black">RadioButtons</a>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" style="color:black"
+                   id="navbarDBMenu" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">DB Samples</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDBMenu">
+                    <a class="dropdown-item" href="~/SamplePages/SingleQuery.cshtml"
+                       style="color:black">Single Query Record</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="~/SamplePages/CheckBoxes.cshtml"
-                   style="color:black">CheckBoxes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="~/SamplePages/DropDownList.cshtml"
-                   style="color:black">DropDownList (Select)</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="~/SamplePages/BootStrapFormating.cshtml"
-                   style="color:black">BootStrap Formating</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="~/SamplePages/SingleQuery.cshtml"
-                   style="color:black">Single Query Record</a>
-            </li>
+
+
         </ul>
     </div>
 </nav> 
