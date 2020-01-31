@@ -134,6 +134,7 @@
     <Content Include="SamplePages\SingleQuery.cshtml" />
     <Content Include="SamplePages\MultiRecordQuery.cshtml" />
     <Content Include="SamplePages\WebGridDemo.cshtml" />
+    <Content Include="SamplePages\WebGridDestination.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

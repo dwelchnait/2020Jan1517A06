@@ -14,15 +14,26 @@
         Response.Redirect("MultiRecordQuery.cshtml");
     }
 
+
     var db = Database.Open("NWDB");
     var queryCommand = @"SELECT ProductID, ProductName, UnitPrice, QuantityPerUnit, Discontinued 
                          FROM Products 
                          WHERE CategoryID = @0";
     var results = db.Query(queryCommand, incomingParameter);
 
+    //the query will be returning a single value, not a row, not a collection of rows
+    //use .QueryValue() to execute the sql command
+    //Testing of results would use  xxxx == null
+    var getnameCommand = @"SELECT CategoryName 
+                            FROM Categories 
+                            WHERE CategoryID = @0";
+    var categoryname = db.QueryValue(getnameCommand, incomingParameter);
+
     //create an instance of the WebGrid
     //notice the collection (results) is passed at the time of instantiation
-    var gridinstance = new WebGrid(results);
+    //to set your page size, you need to do this on the new command NOT within
+    //    the GetHtml()
+    var gridinstance = new WebGrid(results, rowsPerPage:3);
 }
 
 @section banner{
@@ -30,9 +41,34 @@
 }
 
 <div class="row">
-    <div class="offset-1">
-        <span style="font-size:x-large"><strong>Products for category @incomingParameter</strong></span>
-        @* use WebGrid *@
-        @gridinstance.GetHtml();
+    @* to center you web grid on the page, you can play with your boostrap offset-nn and col-xx-nn classes *@
+    <div class="offset-3 col-md-6">
+        <span style="font-size:x-large"><strong>Products for Category @categoryname</strong></span>
+        @* use WebGrid
+        You DO NOT need to use all columns from your query. If you wish to omit a column, simply, do NOT
+            add the xxxx.Column() to your list of display columns
+        formatting for a datetime attribute  format: (item) => item.somedatefield.ToString("MMM dd, yyyy")*@
+        @gridinstance.GetHtml(
+             tableStyle: "table table-striped table-bordered table-hover",
+             mode: WebGridPagerModes.All,
+             firstText: "Start",
+             lastText: "End",
+            columns: gridinstance.Columns(
+                gridinstance.Column(columnName: "ProductID", header: "ID"),
+                gridinstance.Column(columnName: "ProductName", header: "Product"),
+                //gridinstance.Column(columnName: "QuantityPerUnit", header: "Pkg"),
+                gridinstance.Column(columnName: "UnitPrice", header: "$",
+                    format: (item) => item.UnitPrice.ToString("0.00")),
+                gridinstance.Column(columnName: "Discontinued", header: "Disc.",
+                    format: @<input name="Discontinued" type="checkbox"
+                              value="@item.Discontinued" 
+                              @(item.Discontinued == true ? "Checked" : null) 
+                              disabled="disabled" />),
+                gridinstance.Column(header:"",
+                    format: @<text>
+                                <a href="~/SamplePages/WebGridDestination.cshtml?pid=@item.ProductID"
+                                    onclick="return confirm('Are you sure you wish to view @item.ProductName?')">View</a>
+                            </text>)
+                ))
     </div>
 </div>
