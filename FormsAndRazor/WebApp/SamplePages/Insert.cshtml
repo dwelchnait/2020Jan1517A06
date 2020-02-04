@@ -85,9 +85,11 @@
                         string.IsNullOrEmpty(reorderlevel) ? null : reorderlevel,
                         0);
 
+            //get the identity value of the last inserted record.
+            var x = db.GetLastInsertId();
             //display a successmessage
             <p class="col-md-12 text-center">
-                <span style="color:green"><strong>New Product Added</strong></span>
+                <span style="color:green"><strong>New Product Added @x  </strong></span>
             </p>
         }
         catch (Exception ex)
