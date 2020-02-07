@@ -16,13 +16,53 @@
     //obtain the record collection (dataset) for the supplierid and categoryid
     var db = Database.Open("NWDB");
     var supplierquery = @"SELECT SupplierID, CompanyName
-                         FROM Suppliers 
-                         Order by CompanyName";
+                 FROM Suppliers
+                 Order by CompanyName";
     var categoryquery = @"SELECT CategoryID, CategoryName
-                         FROM Categories 
-                         Order by CategoryName";
+                 FROM Categories
+                 Order by CategoryName";
     var supplierlist = db.Query(supplierquery);
     var categorylist = db.Query(categoryquery);
+
+    //Using Validation Controls
+    // * Validation Controls are both Client and Server Side
+    // * see https://www.mikesdotnetting.com/article/191/validation-in-razor-web-pages-2
+    // * validation controls (excepte Required) only kick in if data is present
+    //Required validation and StringLength validation
+    Validation.Add("ProductName",
+          Validator.Required("Product name is a required field."),
+          Validator.StringLength(40, 1, "Product name is limited to 40 characters"));
+    //StringLength validation on a nullable field
+    Validation.Add("QuantityPerUnit",
+          Validator.StringLength(20, 0, "Quantity per unit is limited to 20 characters"));
+    //Datatype validation and Range validation
+    Validation.Add("UnitPrice",
+        Validator.Decimal("Unit Price must be a dollar amount"),
+        Validator.Range(0.00, double.MaxValue, "Unit price must be greater than 0.00"));
+    Validation.Add("UnitsInStock",
+        Validator.Integer("QoH must be a number"),
+        Validator.Range(0, 32767, "QoH must be between 0 and 32767"));
+    Validation.Add("UnitsOnOrder",
+        Validator.Integer("QoO must be a number"),
+        Validator.Range(0, 32767, "QoO must be between 0 and 32767"));
+    Validation.Add("ReorderLevel",
+        Validator.Integer("Reorder level must be a number"),
+        Validator.Range(0, 32767, "Reorder level must be between 0 and 32767"));
+
+    //other samples
+    //compare two fields EqualsTo()
+    //where?  passwords
+    //Validation.Add("ConfirmPassword",
+    //    Validator.EqualsTo("Password", "Password is not confirmed. Try again"));
+
+    //pattern matching using RegEx()   regular expression
+    //see email matching expressions https://emailregex.com/
+    //HTML5 handles with type="email"
+    //Validation.Add("Email",
+    //    Validator.Regex(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", "Invalid email address"));
+    //postal code expression
+    //Validation.Add("PostalCode",
+    //    Validator.Regex(@"[a-zA-Z][0-9][a-zA-Z][0-9][a-zA-Z][0-9]", "Invalid postal code"));
 
 }
 
@@ -43,6 +83,7 @@
         you could create a &ltLabel&gt field for the output display of the primary key.
     </blockquote>
 }
+
 
 @if (IsPost)
 {
@@ -74,41 +115,57 @@
         reorderlevel = Request.Form["ReorderLevel"];
         discontinued = Request.Form["Discontinued"];
 
-        try
+        //validation controls DO NOT execute unless you request their execution using IsValid
+        if (Validation.IsValid())
         {
-            //connect to the database
-            //var db = Database.Open("NWDB");
 
-            //create the sql insert command
-            var insertcommand = @"INSERT INTO Products (ProductName, SupplierID, CategoryID,
-                        QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder,
-                        ReorderLevel, Discontinued)
-                      VALUES(@0, @1, @2, @3, @4, @5, @6, @7, @8)";
+            try
+            {
+                // if you have validation that is NOT possible through HTML 5 validation OR
+                //    using Validation controls you will need to write your own
+                //    logic to handle the errors
+                // example: Lets assume that the supplier id is a require field
+                //          Lets assume that the validation was not preformed by HTML 5 or
+                //               using Validation controls
+                if (string.IsNullOrEmpty(supplierid) || int.Parse(supplierid) < 1)
+                {
+                    throw new Exception("Invalid supplier id. Please select from the supplied list.");
+                }
 
-            //execute the insert command
-            //to execute the insert, update or delete command use .Execute()
-            db.Execute(insertcommand, productname,
-                        supplierid.Equals("0") ? null : supplierid,
-                        categoryid.Equals("0") ? null : categoryid,
-                        string.IsNullOrEmpty(quantityperunit) ? null : quantityperunit,
-                        string.IsNullOrEmpty(unitprice) ? null : unitprice,
-                        string.IsNullOrEmpty(unitsinstock) ? null : unitsinstock,
-                        string.IsNullOrEmpty(unitsonorder) ? null : unitsonorder,
-                        string.IsNullOrEmpty(reorderlevel) ? null : reorderlevel,
-                        0);
+                //connect to the database
+                //var db = Database.Open("NWDB");
 
-            //get the identity value of the last inserted record.
-            var x = db.GetLastInsertId();
-            //display a successmessage
-            <p class="col-md-12 text-center">
-                <span style="color:green"><strong>New Product Added @x  </strong></span>
-            </p>
-        }
-        catch (Exception ex)
-        {
-            <p class="col-md-12 text-center">
-                <span style="color:firebrick"><strong>Error: @ex.Message</strong></span>
-            </p>
+                //create the sql insert command
+                var insertcommand = @"INSERT INTO Products (ProductName, SupplierID, CategoryID,
+                                        QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder,
+                                        ReorderLevel, Discontinued)
+                                      VALUES(@0, @1, @2, @3, @4, @5, @6, @7, @8)";
+
+                //execute the insert command
+                //to execute the insert, update or delete command use .Execute()
+                db.Execute(insertcommand, productname,
+                            supplierid.Equals("0") ? null : supplierid,
+                            categoryid.Equals("0") ? null : categoryid,
+                            string.IsNullOrEmpty(quantityperunit) ? null : quantityperunit,
+                            string.IsNullOrEmpty(unitprice) ? null : unitprice,
+                            string.IsNullOrEmpty(unitsinstock) ? null : unitsinstock,
+                            string.IsNullOrEmpty(unitsonorder) ? null : unitsonorder,
+                            string.IsNullOrEmpty(reorderlevel) ? null : reorderlevel,
+                            0);
+
+                //get the identity value of the last inserted record.
+                var x = db.GetLastInsertId();
+                //display a successmessage
+                <p class="col-md-12 text-center">
+                    <span style="color:green"><strong>New Product Added @x  </strong></span>
+                </p>
+            }
+            catch (Exception ex)
+            {
+                <p class="col-md-12 text-center">
+                    <span style="color:firebrick"><strong>Error: @ex.Message</strong></span>
+                </p>
+            }
         }
     }
 }
@@ -117,6 +174,18 @@ else
     //1st pass of the page
     //initialization of an web control on the page
 }
+
+@* * declare a control to display the Validation control error messages 
+   * errors will only appear if there is a failure to validate a control
+   * the messages will automatically disappear on each submit (no need to clear)
+   * the message will appear as a bulletted list
+   * all associate errors with the field will have their message displayed
+    
+   * if you wish you could instead display the error beside the actual control
+        using @Html.ValidationMessage("controlname")
+   * consider using one or the other style of display your messages*@
+@Html.ValidationSummary()
+
 <form id="theForm" method="post">
     <div class="row">
         <div class="col-md-6 text-right">
@@ -176,8 +245,22 @@ else
             </select><br />
             <input type="text" id="QuantityPerUnit" name="QuantityPerUnit"
                    value="@quantityperunit" /><br />
-            <input type="text" id="UnitPrice" name="UnitPrice"
-                   value="@unitprice" /><br />
+            @* demonstration of HTLM5 validation on numbers
+                * this validation will only allow a numeric to be entered into the field
+                * the step will indicate the type of data increment for the number
+                * the default step is interger +1
+                * the step for money should include the decimal level step="0.01"
+                * min and max can be used to limit the size for the number
+                * the require attribute will make the user enter a value
+                * if a field is NOT require any other validation ONLY kicks in if
+                     data has been entered
+                * you do NOT need to supply an error message BECAUSE HTML5 generates the
+                     appropriate message for you
+                * HTML5 validation will NOT let the user leave the web page UNLESS ALL
+                     validation is correct OR the user goes to a different web page
+                * this validation is Client-Side*@
+            <input type="number" id="UnitPrice" name="UnitPrice"
+                   value="@unitprice" step="0.01" min="0.00" /><br />
             <input type="text" id="UnitsInStock" name="UnitsInStock"
                    value="@unitsinstock" /><br />
             <input type="text" id="UnitsOnOrder" name="UnitsOnOrder"
