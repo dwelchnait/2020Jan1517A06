@@ -136,6 +136,8 @@
     <Content Include="SamplePages\WebGridDemo.cshtml" />
     <Content Include="SamplePages\WebGridDestination.cshtml" />
     <Content Include="SamplePages\Insert.cshtml" />
+    <Content Include="SamplePages\ProductSearch.cshtml" />
+    <Content Include="SamplePages\ProductEdit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
