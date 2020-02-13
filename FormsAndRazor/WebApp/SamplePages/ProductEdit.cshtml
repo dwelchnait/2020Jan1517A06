@@ -319,7 +319,7 @@ else //for IsPost
             </div>
             <div class="col-sm-6">
                 <input type="text" name="ProductID" value="@productid" readonly /><br />
-                <input type="text" name="ProductName" value="@productname" /><br />
+                <input type="text" name="ProductName" value="@productname" required/><br />
                 <select name="SupplierList">
                     <option value="0">select...</option>
                     @foreach (var acollectionrow in querySuppliers)
@@ -366,10 +366,25 @@ else //for IsPost
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <button type="submit" name="theButton" id="theUpdate" class="btn btn-primary" value="update">Update</button>&nbsp;&nbsp;&nbsp;
-                <button type="submit" name="theButton" id="theDelete" class="btn btn-primary" value="delete">Delete</button>&nbsp;&nbsp;&nbsp;
-                <button type="submit" name="theButton" id="theCancel" class="btn btn-primary" value="cancel">Cancel</button>
+                @* to suppress validation on controls which a on click button event happens
+                     you can add the attribute formnovalidate to the button*@
+                <button type="submit" name="theButton" id="theUpdate" class="btn btn-primary" 
+                        value="update">Update</button>&nbsp;&nbsp;&nbsp;
+                <button type="submit" name="theButton" id="theDelete" class="btn btn-danger" 
+                        value="delete" formnovalidate>Delete</button>&nbsp;&nbsp;&nbsp;
+                <button type="submit" name="theButton" id="theCancel" class="btn btn-light" 
+                        value="cancel" formnovalidate>Cancel</button>
             </div>
         </div>
+        @* this javascript is used to ask for user confirmation on pressing a button; in this
+              case, it is the Delete button
+            Notice that the name attribute which is used by Request.Form is identical whereas
+               the id attribute is unique which is used by javascript*@
+        <script type="text/javascript">
+            document.getElementById("theDelete").onclick = ConfirmDelete;
+            function ConfirmDelete() {
+                return confirm("Are you sure you want to discontinue @productname?")
+            }
+        </script>
     </form>
 </div>
