@@ -12,6 +12,8 @@
     <siteMapNode url="" title="Samples" description="root of sub menu, appears on root menu">
       <siteMapNode url="~/SamplePages/HelloWorld.aspx" title="Hello World" 
                    description="sub menu item"/>
+      <siteMapNode url="~/SamplePages/CommonControls.aspx" title="Common Controls"
+                   description="sub menu item"/>
     </siteMapNode>
     <siteMapNode url="~/Contact.aspx" title="Contact"  description="given" />
     <siteMapNode url="~/About.aspx" title="About"  description="given" />
