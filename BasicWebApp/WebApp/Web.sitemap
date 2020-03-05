@@ -13,7 +13,9 @@
       <siteMapNode url="~/SamplePages/HelloWorld.aspx" title="Hello World" 
                    description="sub menu item"/>
       <siteMapNode url="~/SamplePages/CommonControls.aspx" title="Common Controls"
-                   description="sub menu item"/>
+                   description=""/>
+      <siteMapNode url="~/SamplePages/JobApp.aspx" title="Formating and CheckBoxList"
+                   description=""/>
     </siteMapNode>
     <siteMapNode url="~/Contact.aspx" title="Contact"  description="given" />
     <siteMapNode url="~/About.aspx" title="About"  description="given" />
