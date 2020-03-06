@@ -127,6 +127,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="SamplePages\CommonControls.aspx" />
+    <Content Include="SamplePages\ContestEntry.aspx" />
     <Content Include="SamplePages\HelloWorld.aspx" />
     <Content Include="SamplePages\JobApp.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -190,6 +191,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Entry.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,6 +202,13 @@
     </Compile>
     <Compile Include="SamplePages\CommonControls.aspx.designer.cs">
       <DependentUpon>CommonControls.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\ContestEntry.aspx.cs">
+      <DependentUpon>ContestEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\ContestEntry.aspx.designer.cs">
+      <DependentUpon>ContestEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="SamplePages\HelloWorld.aspx.cs">
       <DependentUpon>HelloWorld.aspx</DependentUpon>
