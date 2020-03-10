@@ -14,7 +14,8 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
 </head>
 <body>
     <form runat="server">
@@ -38,7 +39,8 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+       <%-- given menu default 
+           <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -56,7 +58,53 @@
                     </ul>
                 </div>
             </div>
+        </div>--%>
+     <div class="container">
+      <div class="navbar navbar-inverse">
+          <nav class="navbar navbar-expand-md navbar-light fixed-top">
+              <a class="navbar-brand" href="Default.aspx" runat="server">
+                        <strong>Bootstrap 4+</strong>
+              </a>
+              <button class="navbar-toggler" type="button"
+                        data-toggle="collapse" data-target="#navbarMenuName"
+                        aria-controls="navbarMenuName" aria-expanded="false"
+                        aria-label="Toggle Navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarMenuName">
+                  <ul class="navbar-nav">
+                      <li class="nav-item">
+                          <a class="nav-link" href="~/Default.aspx"
+                                    style="color:black" runat="server">Home</a>
+                       </li>
+                       <li class="nav-item dropdown">
+                           <a class="nav-link dropdown-toggle" href="#"
+                                    id="navbarSubMenu" data-toggle="dropdown" 
+                                    runat="server" style="color:black"
+                                    aria-haspopup="true" aria-expanded="false"> 
+                                Samples</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarSubMenu">
+                                <a class="dropdown-item"
+                                        href="~/SamplePages/TestPage.aspx"
+                                        style="color:black" runat="server">
+                                   TestPage</a>
+                            </div>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link" href="~/Contact.aspx" runat="server"
+                                    style="color:black">Contact</a>
+                          </li>
+                          <li class="nav-item">
+                             <a class="nav-link" href="~/About.aspx" runat="server"
+                                    style="color:black">About</a>
+                           </li>
+                        </ul>
+                    </div>
+                </nav> 
+            </div>
         </div>
+
+
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
