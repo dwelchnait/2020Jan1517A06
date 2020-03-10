@@ -111,6 +111,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootwrap-freecode.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -126,9 +127,12 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="SamplePages\CommonControls.aspx" />
+    <Content Include="SamplePages\ContestEntry.aspx" />
     <Content Include="SamplePages\HelloWorld.aspx" />
+    <Content Include="SamplePages\JobApp.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootwrap-freecode.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -187,6 +191,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Entry.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -198,12 +203,26 @@
     <Compile Include="SamplePages\CommonControls.aspx.designer.cs">
       <DependentUpon>CommonControls.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SamplePages\ContestEntry.aspx.cs">
+      <DependentUpon>ContestEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\ContestEntry.aspx.designer.cs">
+      <DependentUpon>ContestEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SamplePages\HelloWorld.aspx.cs">
       <DependentUpon>HelloWorld.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SamplePages\HelloWorld.aspx.designer.cs">
       <DependentUpon>HelloWorld.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\JobApp.aspx.cs">
+      <DependentUpon>JobApp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\JobApp.aspx.designer.cs">
+      <DependentUpon>JobApp.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

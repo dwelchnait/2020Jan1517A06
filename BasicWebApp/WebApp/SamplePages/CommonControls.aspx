@@ -65,7 +65,7 @@
                  CssClass="form-control">
             </asp:DropDownList>
             &nbsp;&nbsp;
-            <asp:LinkButton ID="LinkButtonCollection" runat="server">
+            <asp:LinkButton ID="LinkButtonCollection" runat="server" OnClick="LinkButtonCollection_Click">
                 Submit choice from List</asp:LinkButton>
         </div>
     </div>

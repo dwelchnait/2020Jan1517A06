@@ -67,6 +67,7 @@ namespace WebApp.SamplePages
 
                 //d)OPTIONALLY you can place a prompt line on your control
                 CollectionList.Items.Insert(0, new ListItem("select....", "0"));
+               // CollectionList.Items.Insert(0, "select....");
 
             }
         }
@@ -121,6 +122,39 @@ namespace WebApp.SamplePages
                 //.SelectedIndex will return the selected line of the control phyiscal index position
                 //.SelectedItem will return the display text of your selected line of the control
                 //the best policy is to use .SelectedValue
+                DisplayReadOnly.Text = CollectionList.SelectedItem.Text +
+                                    " at index " + CollectionList.SelectedIndex +
+                                    " having a value of " + CollectionList.SelectedValue;
+
+            }
+        }
+
+        protected void LinkButtonCollection_Click(object sender, EventArgs e)
+        {
+            int numberchoice = 0;
+
+            if (CollectionList.SelectedIndex == 0)
+            {
+                MessageLabel.Text = "Select a course from the list";
+            }
+           
+            else
+            {
+                numberchoice = int.Parse(CollectionList.SelectedValue);
+                TextBoxNumberChoice.Text = CollectionList.SelectedValue;
+                //TextBoxNumberChoice.Text = numberchoice.ToString();
+                RadioButtonListChoice.SelectedValue = numberchoice.ToString();
+
+                //set the checkbox
+                if (numberchoice == 2 || numberchoice == 4)
+                {
+                    CheckBoxChoice.Checked = true;
+                }
+                else
+                {
+                    CheckBoxChoice.Checked = false;
+                }
+               
                 DisplayReadOnly.Text = CollectionList.SelectedItem.Text +
                                     " at index " + CollectionList.SelectedIndex +
                                     " having a value of " + CollectionList.SelectedValue;
