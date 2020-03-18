@@ -38,7 +38,7 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-
+   
        <%-- given menu default 
            <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -59,6 +59,7 @@
                 </div>
             </div>
         </div>--%>
+        
      <div class="container">
       <div class="navbar navbar-inverse">
           <nav class="navbar navbar-expand-md navbar-light fixed-top">

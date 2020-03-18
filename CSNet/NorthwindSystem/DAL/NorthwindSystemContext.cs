@@ -30,6 +30,10 @@ namespace NorthwindSystem.DAL
         //these properties represent the whole table and all data
         //    of the sql database
         public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<Territory> Territories { get; set; }
 
     }
 }

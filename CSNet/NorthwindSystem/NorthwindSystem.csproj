@@ -54,7 +54,11 @@
   <ItemGroup>
     <Compile Include="BLL\dummy.cs" />
     <Compile Include="DAL\NorthwindSystemContext.cs" />
+    <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\Region.cs" />
+    <Compile Include="Entities\Supplier.cs" />
+    <Compile Include="Entities\Territory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
