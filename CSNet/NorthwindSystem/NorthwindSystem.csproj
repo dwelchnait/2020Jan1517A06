@@ -52,7 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\dummy.cs" />
+    <Compile Include="BLL\CategoryController.cs" />
+    <Compile Include="BLL\ProductController.cs" />
+    <Compile Include="BLL\RegionController.cs" />
+    <Compile Include="BLL\SupplierController.cs" />
+    <Compile Include="BLL\TerritoryController.cs" />
     <Compile Include="DAL\NorthwindSystemContext.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Product.cs" />
