@@ -19,8 +19,8 @@ namespace NorthwindSystem.BLL
             //   of the query process
             using (var context = new NorthwindSystemContext())
             {
-                //use an extension method of EntityFrame to get
-                //all of the data from the sql table Region
+                //use an extension method of EntityFramework to get
+                //    all of the data from the sql table Region
                 //use the property DbSet that maps the Region sql table to 
                 //    the application
                 //the dbset T type is Region which describes a single record

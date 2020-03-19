@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <asp:Label ID="Label1" runat="server" Text="Select a Product:"></asp:Label>&nbsp;&nbsp;
             <asp:DropDownList ID="ProductList" runat="server"></asp:DropDownList>&nbsp;&nbsp;
-            <asp:LinkButton ID="Fetch" runat="server">
+            <asp:LinkButton ID="Fetch" runat="server" OnClick="Fetch_Click">
                 <i class="fa fa-search"></i> Search
             </asp:LinkButton>
             <br />
@@ -28,7 +28,7 @@
                 
         </div>
         <div class="col-md-10 text-left">
-            <asp:Label ID="ProductID" runat="server" text="bob"></asp:Label><br/>
+            <asp:Label ID="ProductID" runat="server"></asp:Label><br/>
             <asp:Label ID="ProductName" runat="server" ></asp:Label><br/>
             <asp:Label ID="SupplierID" runat="server" ></asp:Label><br/>
             <asp:Label ID="CategoryID" runat="server" ></asp:Label><br/>

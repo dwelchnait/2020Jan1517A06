@@ -30,5 +30,50 @@ namespace WebApp.SamplePages
             }
             return ex;
         }
+
+        protected void Fetch_Click(object sender, EventArgs e)
+        {
+            int regionid = 0;
+            if (string.IsNullOrEmpty(RegionArg.Text))
+            {
+                MessageLabel.Text = "Supply a region id before searching";
+            }
+            else if (!int.TryParse(RegionArg.Text, out regionid))
+            {
+                MessageLabel.Text = "Region id must be a number";
+            }
+            else
+            {
+                //your web application will be calling another project
+                //you are to wrap this processing up in a Try/Catch
+                try
+                {
+                    //standard lookup
+                    //a) connect to your controller
+                    RegionController sysmgr = new RegionController();
+                    //b) call the method in the system controller class
+                    //   and capture the returning data
+                    Region info = sysmgr.Regions_FindByID(int.Parse(RegionArg.Text));
+                    //c) check results and process accordingly
+                    if (info == null)
+                    {
+                        //not found
+                        MessageLabel.Text = "There is no region for the supplied argument";
+                        RegionID.Text = "";
+                        Description.Text = "";
+                    }
+                    else
+                    {
+                        //found
+                        RegionID.Text = info.RegionID.ToString();
+                        Description.Text = info.RegionDescription;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageLabel.Text = GetInnerException(ex).Message;
+                }
+            }
+        }
     }
 }
