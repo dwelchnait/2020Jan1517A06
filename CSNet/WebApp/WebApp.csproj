@@ -128,6 +128,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="SamplePages\MultiRecordODS.aspx" />
     <Content Include="SamplePages\ProductQuery.aspx" />
     <Content Include="SamplePages\RegionQuery.aspx" />
     <Content Include="SamplePages\TestPage.aspx" />
@@ -303,6 +304,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SamplePages\MultiRecordODS.aspx.cs">
+      <DependentUpon>MultiRecordODS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\MultiRecordODS.aspx.designer.cs">
+      <DependentUpon>MultiRecordODS.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SamplePages\ProductQuery.aspx.cs">
       <DependentUpon>ProductQuery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
