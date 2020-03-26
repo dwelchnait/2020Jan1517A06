@@ -30,8 +30,18 @@
         <div class="col-md-10 text-left">
             <asp:Label ID="ProductID" runat="server"></asp:Label><br/>
             <asp:Label ID="ProductName" runat="server" ></asp:Label><br/>
-            <asp:Label ID="SupplierID" runat="server" ></asp:Label><br/>
-            <asp:Label ID="CategoryID" runat="server" ></asp:Label><br/>
+           <%-- <asp:Label ID="SupplierID" runat="server" ></asp:Label><br/>
+            <asp:Label ID="CategoryID" runat="server" ></asp:Label><br/>--%>
+            <asp:DropDownList ID="SupplierList" runat="server" 
+                DataSourceID="SupplierListODS" 
+                DataTextField="CompanyName" 
+                DataValueField="SupplierID">
+            </asp:DropDownList><br />
+            <asp:DropDownList ID="CategoryList" runat="server" 
+                DataSourceID="CategoryListODS" 
+                DataTextField="CategoryName" 
+                DataValueField="CategoryID">
+            </asp:DropDownList><br />
             <asp:Label ID="QuantityPerUnit" runat="server" ></asp:Label><br/>
             <asp:Label ID="UnitPrice" runat="server" ></asp:Label><br/>
             <asp:Label ID="UnitsInStock" runat="server" ></asp:Label><br/>
@@ -41,4 +51,14 @@
                 Text="  (checked if discontinued)"></asp:CheckBox>
         </div>
     </div>
+    <asp:ObjectDataSource ID="SupplierListODS" runat="server" 
+        OldValuesParameterFormatString="original_{0}" 
+        SelectMethod="Suppliers_List" 
+        TypeName="NorthwindSystem.BLL.SupplierController">
+    </asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="CategoryListODS" runat="server" 
+        OldValuesParameterFormatString="original_{0}" 
+        SelectMethod="Categories_List" 
+        TypeName="NorthwindSystem.BLL.CategoryController">
+    </asp:ObjectDataSource>
 </asp:Content>

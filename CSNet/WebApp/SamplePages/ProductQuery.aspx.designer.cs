@@ -157,22 +157,22 @@ namespace WebApp.SamplePages {
         protected global::System.Web.UI.WebControls.Label ProductName;
         
         /// <summary>
-        /// SupplierID control.
+        /// SupplierList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SupplierID;
+        protected global::System.Web.UI.WebControls.DropDownList SupplierList;
         
         /// <summary>
-        /// CategoryID control.
+        /// CategoryList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CategoryID;
+        protected global::System.Web.UI.WebControls.DropDownList CategoryList;
         
         /// <summary>
         /// QuantityPerUnit control.
@@ -227,5 +227,23 @@ namespace WebApp.SamplePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox Discontinued;
+        
+        /// <summary>
+        /// SupplierListODS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource SupplierListODS;
+        
+        /// <summary>
+        /// CategoryListODS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource CategoryListODS;
     }
 }

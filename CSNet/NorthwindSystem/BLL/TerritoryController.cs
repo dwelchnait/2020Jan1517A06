@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NorthwindSystem.BLL
 {
-    class TerritoryController
+    public class TerritoryController
     {
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,10 +8,13 @@ using System.Threading.Tasks;
 #region Additional Namespaces
 using NorthwindSystem.DAL;
 using NorthwindSystem.Entities;
+using System.ComponentModel;  //ODS
+using System.Data.SqlClient;    //SqlParameter()
 
 #endregion
 namespace NorthwindSystem.BLL
 {
+    [DataObject]
     public class ProductController
     {
         public List<Product> Products_List()
@@ -37,6 +41,27 @@ namespace NorthwindSystem.BLL
                 //the .Find() method does a primary key lookup of the
                 //    sql table
                 return context.Products.Find(productid);
+            }
+        }
+
+        //this query will use a NON_PRIMARY key field off the Product
+        //   record to lookup data from the database table
+        [DataObjectMethod(DataObjectMethodType.Select,false)]
+        public List<Product> Products_FindByCategory(int categoryid)
+        {
+            using (var context = new NorthwindSystemContext())
+            {
+                //call to an Sql Procedure
+                //the call returns a datatype of IEnumerable<T>
+                //.SqlQuery<T>(execution string[, list of SqlParameter instances])
+                //execution string >>   "procedurename parameterlist"
+                //a parameter is specified using SqlParameter("parametername", value)
+                //SqlParameter() requires using System.Data.SqlClient; namespace
+                IEnumerable<Product> results = context.Database.SqlQuery<Product>("Products_GetByCategories @CategoryID",
+                    new SqlParameter("CategoryID", categoryid));
+
+                //convert the IEnumerable<T> to a List<T>
+                return results.ToList();
             }
         }
     }

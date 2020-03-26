@@ -104,8 +104,25 @@ namespace WebApp.SamplePages
                         //move your data from info to the cooresponding controls on the web page.
                         ProductID.Text = info.ProductID.ToString();
                         ProductName.Text = info.ProductName;
-                        SupplierID.Text = info.SupplierID.ToString();
-                        CategoryID.Text = info.CategoryID.ToString();
+                        //SupplierID.Text = info.SupplierID.ToString();
+                        //CategoryID.Text = info.CategoryID.ToString();
+                        if ( info.SupplierID == null)
+                        {
+                            SupplierList.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            SupplierList.SelectedValue = info.SupplierID.ToString();
+                        }
+                        if (info.CategoryID == null)
+                        {
+                            CategoryList.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            CategoryList.SelectedValue = info.CategoryID.ToString();
+                        }
+                        
                         QuantityPerUnit.Text = info.QuantityPerUnit == null ? "" : info.QuantityPerUnit;
                         UnitPrice.Text = info.UnitPrice == null ? "" : string.Format("{0:0.00}", info.UnitPrice);
                         UnitsInStock.Text = info.UnitsInStock == null ? "" : info.UnitsInStock.ToString();
