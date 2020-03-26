@@ -97,6 +97,10 @@
                                         href="~/SamplePages/ProductQuery.aspx"
                                         style="color:black" runat="server">
                                    Simply Query : List</a>
+                                 <a class="dropdown-item"
+                                        href="~/SamplePages/MultiRecordODS.aspx"
+                                        style="color:black" runat="server">
+                                   ODS Query : Non-Pkey List</a>
                             </div>
                          </li>
                          <li class="nav-item">

@@ -102,6 +102,16 @@ namespace WebApp.SamplePages
                     else
                     {
                         //move your data from info to the cooresponding controls on the web page.
+                        ProductID.Text = info.ProductID.ToString();
+                        ProductName.Text = info.ProductName;
+                        SupplierID.Text = info.SupplierID.ToString();
+                        CategoryID.Text = info.CategoryID.ToString();
+                        QuantityPerUnit.Text = info.QuantityPerUnit == null ? "" : info.QuantityPerUnit;
+                        UnitPrice.Text = info.UnitPrice == null ? "" : string.Format("{0:0.00}", info.UnitPrice);
+                        UnitsInStock.Text = info.UnitsInStock == null ? "" : info.UnitsInStock.ToString();
+                        UnitsOnOrder.Text = info.UnitsOnOrder == null ? "" : info.UnitsOnOrder.ToString();
+                        ReorderLevel.Text = info.ReorderLevel == null ? "" : info.ReorderLevel.ToString();
+                        Discontinued.Checked = info.Discontinued;
                     }
                 }
                 catch(Exception ex)
