@@ -33,9 +33,10 @@ namespace WebApp.SamplePages
             //i am creating a variable which will point to the selected row
             //    this variable is being used so I can reduce my typing
             GridViewRow agvrow = ProductList.Rows[ProductList.SelectedIndex];
+
             msg = "ID is:" + (agvrow.FindControl("ProductID") as Label).Text;
             msg += "Name is:" + (agvrow.FindControl("ProductName") as Label).Text;
-            msg += "Supplier is:" + (agvrow.FindControl("SupplierList") as DropDownList).SelectedValue;
+            msg += "Supplier is:" + (agvrow.FindControl("SupplierListGV") as DropDownList).SelectedValue;
             msg += "Category is:" + (agvrow.FindControl("CategoryListGV") as DropDownList).SelectedValue;
             msg += "UnitPrice is:" + (agvrow.FindControl("UnitPrice") as Label).Text;
             msg += "Disc is:" + (agvrow.FindControl("Discontinued") as CheckBox).Checked.ToString();

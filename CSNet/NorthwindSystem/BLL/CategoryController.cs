@@ -24,6 +24,7 @@ namespace NorthwindSystem.BLL
                 return context.Categories.ToList();
             }
         }
+
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public Category Categories_FindByID(int categoryid)
         {
