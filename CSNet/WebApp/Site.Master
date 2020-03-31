@@ -101,6 +101,10 @@
                                         href="~/SamplePages/MultiRecordODS.aspx"
                                         style="color:black" runat="server">
                                    ODS Query : Non-Pkey List</a>
+                                 <a class="dropdown-item"
+                                        href="~/SamplePages/GridViewCodeBehindPaging.aspx"
+                                        style="color:black" runat="server">
+                                   GridView Paging and Filter Search</a>
                             </div>
                          </li>
                          <li class="nav-item">
