@@ -128,6 +128,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="SamplePages\GridViewCodeBehindPaging.aspx" />
     <Content Include="SamplePages\MultiRecordODS.aspx" />
     <Content Include="SamplePages\ProductQuery.aspx" />
     <Content Include="SamplePages\RegionQuery.aspx" />
@@ -304,6 +305,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SamplePages\GridViewCodeBehindPaging.aspx.cs">
+      <DependentUpon>GridViewCodeBehindPaging.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\GridViewCodeBehindPaging.aspx.designer.cs">
+      <DependentUpon>GridViewCodeBehindPaging.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SamplePages\MultiRecordODS.aspx.cs">
       <DependentUpon>MultiRecordODS.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

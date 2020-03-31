@@ -64,5 +64,16 @@ namespace NorthwindSystem.BLL
                 return results.ToList();
             }
         }
+
+        public List<Product> Products_GetByPartialProductName(string productname)
+        {
+            using (var context = new NorthwindSystemContext())
+            {
+                IEnumerable<Product> results = context.Database.SqlQuery<Product>("Products_GetByPartialProductName @PartialName",
+                    new SqlParameter("PartialName", productname));
+                return results.ToList();
+            }
+        }
+
     }
 }
