@@ -1,0 +1,21 @@
+Create PROCEDURE Player_GetByAgeGender
+	@Age int,
+	@Gender char(1)
+	
+AS
+
+SELECT
+	PlayerID,
+	GuardianID,
+	TeamID,
+	FirstName,
+	LastName,
+	Age,
+	Gender,
+	AlbertaHealthCareNumber,
+	MedicalAlertDetails
+FROM Player
+WHERE
+	Age = @Age
+	and
+	Gender = @Gender
