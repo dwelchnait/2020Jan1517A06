@@ -105,6 +105,10 @@
                                         href="~/SamplePages/GridViewCodeBehindPaging.aspx"
                                         style="color:black" runat="server">
                                    GridView Paging and Filter Search</a>
+                                  <a class="dropdown-item"
+                                        href="~/SamplePages/ProductCRUD.aspx"
+                                        style="color:black" runat="server">
+                                   Product CRUD</a>
                             </div>
                          </li>
                          <li class="nav-item">

@@ -96,5 +96,17 @@ namespace WebApp.SamplePages
             UnitPrice.Text = "";
             Discontinued.Checked = false;
         }
+
+        protected void ProductList_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            //you must manually alter the current PageIndex
+            //the page index along with the Pagesize will determine which
+            //   rows of your dataset (collection) to display
+            //the required page index is located inside the variable parameter e
+            ProductList.PageIndex = e.NewPageIndex;
+
+            //you must now refresh your data set (collection)
+            Fetch_Click(sender, new EventArgs());
+        }
     }
 }

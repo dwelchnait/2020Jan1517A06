@@ -121,6 +121,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootwrap-freecode.css" />
+    <Content Include="Content\myStyles.css" />
     <Content Include="Content\Site.css" />
     <Content Include="css\font-awesome.css" />
     <Content Include="css\font-awesome.min.css" />
@@ -130,6 +131,7 @@
     <Content Include="Global.asax" />
     <Content Include="SamplePages\GridViewCodeBehindPaging.aspx" />
     <Content Include="SamplePages\MultiRecordODS.aspx" />
+    <Content Include="SamplePages\ProductCRUD.aspx" />
     <Content Include="SamplePages\ProductQuery.aspx" />
     <Content Include="SamplePages\RegionQuery.aspx" />
     <Content Include="SamplePages\TestPage.aspx" />
@@ -318,6 +320,13 @@
     </Compile>
     <Compile Include="SamplePages\MultiRecordODS.aspx.designer.cs">
       <DependentUpon>MultiRecordODS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\ProductCRUD.aspx.cs">
+      <DependentUpon>ProductCRUD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\ProductCRUD.aspx.designer.cs">
+      <DependentUpon>ProductCRUD.aspx</DependentUpon>
     </Compile>
     <Compile Include="SamplePages\ProductQuery.aspx.cs">
       <DependentUpon>ProductQuery.aspx</DependentUpon>

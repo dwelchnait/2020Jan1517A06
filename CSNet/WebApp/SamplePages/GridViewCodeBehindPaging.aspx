@@ -25,7 +25,7 @@
             <asp:LinkButton ID="Fetch" runat="server" OnClick="Fetch_Click">
                 <i class="fa fa-search"></i> Search
             </asp:LinkButton>&nbsp;&nbsp;
-            <asp:LinkButton ID="Clear" runat="server" OnClick="Clear_Click" >
+            <asp:LinkButton ID="Clear" runat="server" OnClick="Clear_Click" CausesValidation="false" >
                 <i class="fa fa-trash"></i>Clear</asp:LinkButton>
             <br />
             <asp:Label ID="MessageLabel" runat="server" ></asp:Label>
@@ -33,7 +33,8 @@
             <asp:GridView ID="ProductList" runat="server" AutoGenerateColumns="False"
                  CssClass="table table-striped" GridLines="Horizontal" BorderStyle="None" 
                  OnSelectedIndexChanged="ProductList_SelectedIndexChanged"
-                 AllowPaging="true" PageSize="4" PagerSettings-Mode="Numeric">
+                 AllowPaging="true" PageSize="4" PagerSettings-Mode="Numeric" 
+                 OnPageIndexChanging="ProductList_PageIndexChanging">
 
                 <Columns>
                     <asp:CommandField SelectText="View" ShowSelectButton="True" 
@@ -65,6 +66,7 @@
                         </ItemStyle>
                     </asp:TemplateField>
                 </Columns>
+                <PagerSettings FirstPageText="Start" LastPageText="End" Mode="NumericFirstLast" />
             </asp:GridView>
          </div>
          <div class="col-md-6">
