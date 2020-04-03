@@ -29,10 +29,12 @@
              <asp:DropDownList ID="ProductList" runat="server"></asp:DropDownList>&nbsp;&nbsp;
              <asp:LinkButton ID="Search" runat="server" Font-Size="X-Large" OnClick="Search_Click" 
                   CausesValidation="false">Search</asp:LinkButton>&nbsp;&nbsp;
-             <asp:LinkButton ID="Clear" runat="server" Font-Size="X-Large" >Clear</asp:LinkButton>&nbsp;&nbsp;
+             <asp:LinkButton ID="Clear" runat="server" Font-Size="X-Large" OnClick="Clear_Click" 
+                  CausesValidation="false">Clear</asp:LinkButton>&nbsp;&nbsp;
              <asp:LinkButton ID="AddProduct" runat="server" Font-Size="X-Large" >Add</asp:LinkButton>&nbsp;&nbsp;
              <asp:LinkButton ID="UpdateProduct" runat="server" Font-Size="X-Large" >Update</asp:LinkButton>&nbsp;&nbsp;
-             <asp:LinkButton ID="RemoveProduct" runat="server" Font-Size="X-Large" >Remove</asp:LinkButton>&nbsp;&nbsp;
+             <asp:LinkButton ID="RemoveProduct" runat="server" Font-Size="X-Large" 
+                  CausesValidation="false">Remove</asp:LinkButton>&nbsp;&nbsp;
          
              <br /><br />
              <asp:DataList ID="Message" runat="server">

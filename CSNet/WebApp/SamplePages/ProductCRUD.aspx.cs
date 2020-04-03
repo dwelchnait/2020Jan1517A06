@@ -97,7 +97,7 @@ namespace WebApp.NorthwindPages
                         //load the co-responding individual field
                         ProductID.Text = info.ProductID.ToString();
                         ProductName.Text = info.ProductName;
-                        if ( info.SupplierID ==  null)
+                        if ( info.SupplierID.HasValue)
                         {
                             SupplierList.SelectedIndex = 0;
                         }
@@ -115,7 +115,7 @@ namespace WebApp.NorthwindPages
                         }
                         QuantityPerUnit.Text = string.IsNullOrEmpty(info.QuantityPerUnit) ? "" : info.QuantityPerUnit;
                         UnitPrice.Text = info.UnitPrice == null ? "" : string.Format("{0:0.00}",info.UnitPrice);
-                        UnitsInStock.Text = info.UnitsInStock == null ? "" :info.UnitPrice.ToString();
+                        UnitsInStock.Text = info.UnitsInStock == null ? "" :info.UnitsInStock.ToString();
                         UnitsOnOrder.Text = info.UnitsOnOrder == null ? "" : info.UnitsOnOrder.ToString();
                         ReorderLevel.Text = info.ReorderLevel == null ? "" : info.ReorderLevel.ToString();
                         Discontinued.Checked = info.Discontinued;
@@ -127,6 +127,22 @@ namespace WebApp.NorthwindPages
                     LoadMessageDisplay(errormsgs, "alert alert-danger");
                 }
             }
+        }
+
+        protected void Clear_Click(object sender, EventArgs e)
+        {
+            ProductID.Text = "";
+            ProductName.Text = "";
+            QuantityPerUnit.Text = "";
+            UnitPrice.Text = "";
+            UnitsInStock.Text = "";
+            UnitsOnOrder.Text = "";
+            ReorderLevel.Text = "";
+            Discontinued.Checked = false;
+            SupplierList.ClearSelection();
+            CategoryList.ClearSelection();
+            //optionally
+            ProductList.ClearSelection();
         }
     }
 }
