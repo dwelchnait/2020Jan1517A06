@@ -75,5 +75,70 @@ namespace NorthwindSystem.BLL
             }
         }
 
+        public int Products_Add(Product item)
+        {
+            using (var context = new NorthwindSystemContext())
+            {
+                //Staged the action for the database
+                //Staging is done in local memory
+                //data needs to be in an instance of the class
+                context.Products.Add(item);
+
+                //phsyical action of saving your instance to the database
+                //at this time any validation in the class definition is executed
+                //if the save is successful :Commit
+                //if the save is not successful : Rollback
+                //if the pkey is an identiy pkey, then it is at this
+                //    point the pkey value is create by the database
+                //    and is placed in the class instance
+                context.SaveChanges();
+
+                //returning the new pkey
+                return item.ProductID;
+            }
+        }
+
+        public int Products_Update(Product item)
+        {
+            using (var context = new NorthwindSystemContext())
+            {
+                //stage
+                context.Entry(item).State = System.Data.Entity.EntityState.Modified;
+
+                //commit and return of the number rows affected
+                return context.SaveChanges();
+            }
+        }
+
+        public int Products_Delete(int productid)
+        {
+            using (var context = new NorthwindSystemContext())
+            {
+                //two types of deletes
+
+                ////physical: physically removal of the record from the database
+                ////get the record from the database by the pkey
+                //var exists = context.Products.Find(productid);
+                ////stage the removal
+                //context.Products.Remove(exists);
+                ////commit
+                //return context.SaveChanges();
+
+                //logical: one sets a property of the class to a specified
+                //          value to indicate the record "logically" does not
+                //          "exist" on the database anymore
+
+                var exists = context.Products.Find(productid);
+                //the setting of the property should be done within this method
+                //   and NOT dependent on the user remembering to do the action
+                exists.Discontinued = true;
+                //stage
+                context.Entry(exists).State = System.Data.Entity.EntityState.Modified;
+
+                //commit and return of the number rows affected
+                return context.SaveChanges();
+
+            }
+        }
     }
 }
