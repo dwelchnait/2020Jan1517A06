@@ -150,7 +150,96 @@ namespace WebApp.NorthwindPages
         }
         protected void AddProduct_Click(object sender, EventArgs e)
         {
+            //executes your web page validation controls
+            if (Page.IsValid)
+            {
+                //any other required validation in code-behind that
+                //   was not done with the web page validation controls
 
+                //assume for this example that the foreigh keys are need
+
+                if (SupplierList.SelectedIndex == 0)
+                {
+                    errormsgs.Add("Supplier is required.");
+                }
+                if (CategoryList.SelectedIndex == 0)
+                {
+                    errormsgs.Add("Category is required.");
+                }
+
+                //assume you need to test another field, we will use
+                //   the UnitPrice here for an example
+                decimal unitprice = 0.0m;
+                if (!decimal.TryParse(UnitPrice.Text, out unitprice))
+                {
+                    errormsgs.Add("Unit price must be a dollar amount.");
+                }
+                if (unitprice < 0.00m)
+                {
+                    errormsgs.Add("Unit price cannot be a negative dollar amount.");
+                }
+
+                //check to see if there has been any code behind validation errors
+                //if so, display ALL the discovered errors
+                if (errormsgs.Count > 0)
+                {
+                    LoadMessageDisplay(errormsgs, "alert alert-info");
+                }
+                else
+                {
+                    //use a common method to load the product data into
+                    //    an instance of the class
+                    //this method can now be used also in Update
+                    Product item = LoadProductInstance();
+                    //since this is a "new" product then discontinued can be
+                    //    hard-coded to false
+                    item.Discontinued = false;
+
+                    try
+                    {
+                        ProductController sysmgr = new ProductController();
+                        int newproducid = sysmgr.Products_Add(item);
+                        //record was updated
+                        errormsgs.Add("Product has been added");
+                        LoadMessageDisplay(errormsgs, "alert alert-info");
+                        // display the new product id that has been returned
+                        ProductID.Text = newproducid.ToString();
+                        //refresh the selection list to include the new product
+                        BindProductList();
+                        //position on the newly added product
+                        ProductList.SelectedValue = newproducid.ToString();
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        UpdateException updateException = (UpdateException)ex.InnerException;
+                        if (updateException.InnerException != null)
+                        {
+                            errormsgs.Add(updateException.InnerException.Message.ToString());
+                        }
+                        else
+                        {
+                            errormsgs.Add(updateException.Message);
+                        }
+                        LoadMessageDisplay(errormsgs, "alert alert-danger");
+                    }
+                    catch (DbEntityValidationException ex)
+                    {
+                        foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                        {
+                            foreach (var validationError in entityValidationErrors.ValidationErrors)
+                            {
+                                errormsgs.Add(validationError.ErrorMessage);
+                            }
+                        }
+                        LoadMessageDisplay(errormsgs, "alert alert-danger");
+                    }
+                    catch (Exception ex)
+                    {
+                        errormsgs.Add(GetInnerException(ex).ToString());
+                        LoadMessageDisplay(errormsgs, "alert alert-danger");
+                    }
+                }
+            }
         }
 
         protected void UpdateProduct_Click(object sender, EventArgs e)
