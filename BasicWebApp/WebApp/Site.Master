@@ -39,42 +39,48 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">CPSC1517-A06</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                   <%-- <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
-                        <li><a runat="server" href="~/SamplePages/HelloWorld">Hello World</a></li>
-                    </ul>--%>
-
-                    <%-- Replacement code for the default menu
+          <%-- Replacement code for the default menu
                         You will use a asp:Menu control 
                         This control will reference a second control containing
                              the file name of the phyiscal location of the actual menu
                         The actual menu will exist in the default sitemap file called
                            web.sitemap--%>
-                    <asp:Menu ID="BasicAspNetMenu" runat="server"
-                         DataSourceID="BasicAspNetMenuDS" Orientation="Horizontal"
-                         StaticDisplayLevels="1"
-                         StaticMenuStyle-CssClass="nav nav-bar"
-                         StaticSelectedStyle-CssClass="active"
-                         DynamicMenuStyle-CssClass="dropdown-menu"
-                         IncludeStyleBlock="false" EnableTheming="false"
-                         EnableViewState="false">
-                    </asp:Menu>
-                    <asp:SiteMapDataSource ID="BasicAspNetMenuDS" runat="server" 
-                         ShowStartingNode="false"/>
-                </div>
+       <div class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
+           <a class="navbar-brand" runat="server" href="~/">CPSC1517-A06</a>
+           <button class="navbar-toggler" type="button" data-toggle="collapse" 
+               data-target="#navbarSupportedContent" 
+               aria-controls="navbarSupportedContent" 
+               aria-expanded="false" 
+               aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse collapse" id="navbarSupportedContent">
+              <asp:Menu ID="MainMenu" runat="server" Orientation="horizontal" 
+                  DataSourceID="BasicAspNetMenuDS"
+                  CssClass="navbar-nav mr-auto" 
+                  StaticMenuStyle-CssClass="nav-item" 
+                  StaticSelectedStyle-CssClass="nav-item" 
+                  StaticSubMenuIndent="16px" 
+                  DynamicMenuStyle-CssClass="nav-item dropdown-menu" 
+                  RenderingMode="List" role="menu" 
+                  itemscope="itemscope" 
+                  itemtype="http://schema.org/SiteNavigationElement" >
+
+                    <LevelMenuItemStyles>
+                        <asp:MenuItemStyle CssClass="dropdown-item" 
+                            HorizontalPadding="15px" Height="50px" 
+                            VerticalPadding="15px" />
+                    </LevelMenuItemStyles>
+                    <LevelSelectedStyles>
+                        <asp:MenuItemStyle CssClass="nav-item active" 
+                            Font-Underline="False" />
+                    </LevelSelectedStyles>
+                    <StaticHoverStyle Font-Underline="true" />
+                    <StaticSelectedStyle Font-Bold="true"   />
+                    <DynamicMenuItemStyle CssClass="dropdown-item" />
+                </asp:Menu>
+                <asp:SiteMapDataSource ID="BasicAspNetMenuDS" runat="server" 
+                    ShowStartingNode="false"/>
             </div>
         </div>
         <div class="container body-content">
